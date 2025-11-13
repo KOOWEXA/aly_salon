@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALY Salón de Belleza</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f9f0ff 0%, #e6f3ff 100%);
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #d63384 0%, #8b5cf6 100%);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 12px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #d63384;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #d63384;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: #c22575;
+        }
+
+        .services {
+            padding: 50px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #8b5cf6;
+            font-size: 1.8rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #d63384;
+        }
+
+        .service-icon {
+            background: #e9ecef;
+            color: #d63384;
+            font-size: 1.5rem;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .service-content {
+            padding: 15px;
+        }
+
+        .service-content h3 {
+            margin-bottom: 10px;
+            color: #8b5cf6;
+            font-size: 1.2rem;
+        }
+
+        .service-content ul {
+            list-style-type: none;
+        }
+
+        .service-content li {
+            margin-bottom: 6px;
+            padding-left: 18px;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .service-content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #d63384;
+            font-weight: bold;
+        }
+
+        .contact {
+            padding: 50px 0;
+            background: #f8f9fa;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-icon {
+            background: #8b5cf6;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .contact-text h3 {
+            margin-bottom: 3px;
+            color: #555;
+        }
+
+        .whatsapp-groups {
+            margin-top: 20px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+        }
+
+        .map-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+                padding: 15px;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-spa"></i> ALY SALÓN DE BELLEZA
+            </div>
+            <p class="tagline">Estética facial y tratamientos de belleza especializados</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container nav-container">
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h2>Belleza y cuidado facial especializado</h2>
+            <p>En ALY Salón de Belleza nos dedicamos a realzar tu belleza natural con tratamientos faciales y estéticos de la más alta calidad.</p>
+            <a href="#contacto" class="btn">Reserva tu cita</a>
+        </div>
+    </section>
+
+    <section class="services" id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Tratamientos Faciales</h3>
+                        <ul>
+                            <li>Limpieza de cutis sencilla</li>
+                            <li>Limpieza, exfoliación, vapor, extracción</li>
+                            <li>Altafrecuencia y mascarilla</li>
+                            <li>Limpieza de cutis profunda</li>
+                            <li>Limpieza completa (cara, cuello, escote)</li>
+                            <li>Limpieza de espalda</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Tratamientos Especializados</h3>
+                        <ul>
+                            <li>Tratamientos Antiacné</li>
+                            <li>Micropunción dérmica o dermapen</li>
+                            <li>Nutrición facial con vitaminas</li>
+                            <li>Hidratación de labios con vitaminas</li>
+                            <li>Manchas solares y melasma</li>
+                            <li>Estrías corporales</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Servicios Premium</h3>
+                        <ul>
+                            <li>Plasma Rico en Plaquetas</li>
+                            <li>Peeling facial despigmentantes</li>
+                            <li>Dermaplaning facial</li>
+                            <li>Fibroblast o plasmapen</li>
+                            <li>Tratamientos para arrugas y flacidez</li>
+                            <li>Párpados, frente, nariz, cuello</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Dirección</h3>
+                            <p>Agramonte #508 / Pasaje A y Agustín Garcia, Regla</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Teléfonos</h3>
+                            <p>+5354415523</p>
+                            <p>+5358458026</p>
+                        </div>
+                    </div>
+
+                    <div class="whatsapp-groups">
+                        <h3>Únete a nuestros grupos</h3>
+                        <a href="https://chat.whatsapp.com/G0FXRPCvNAOFPXZAFVflQH?mode=ems_wa_t" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Grupo 1 de WhatsApp
+                        </a>
+                        <br>
+                        <a href="https://chat.whatsapp.com/KQZmejjuFlPBju9vgJDA9n" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Grupo 2 de WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.016713276847!2d-82.37768248477042!3d23.13504688485403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDA4JzA2LjIiTiA4MsKwMjInMjkuNyJX!5e0!3m2!1ses!2sus!4v1620000000000!5m2!1ses!2sus" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
