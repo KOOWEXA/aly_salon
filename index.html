@@ -412,9 +412,121 @@
         .phone-option input {
             margin-right: 8px;
         }
+
+        /* Estilos para el modal publicitario */
+        .ad-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .ad-modal-content {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 25px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .ad-modal h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .ad-modal p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .ad-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .ad-link {
+            display: block;
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .ad-link:hover {
+            background-color: var(--primary);
+        }
+
+        .ad-modal-footer {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .ad-close-btn {
+            background-color: #f8f9fa;
+            color: var(--gray);
+            border: 1px solid #ddd;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .ad-close-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .ad-close-btn:not(:disabled):hover {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .countdown {
+            color: var(--primary);
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+    <!-- Modal Publicitario -->
+    <div class="ad-modal" id="adModal">
+        <div class="ad-modal-content">
+            <h2>¡Bienvenida a ALY Salón de Belleza!</h2>
+            <p>Te invitamos a conocer esta oportunidad especial:</p>
+            
+            <div class="ad-links">
+                <a href="https://github.com/KOOWEXA/servidor2/raw/refs/heads/main/VID-20251117-WA0001.mp4" class="ad-link" target="_blank">
+                    <i class="fas fa-video"></i> Ver Video
+                </a>
+                <a href="https://github.com/KOOWEXA/servidor2/raw/refs/heads/main/IMG-20251117-WA0000.jpg" class="ad-link" target="_blank">
+                    <i class="fas fa-image"></i> Ver Imagen
+                </a>
+            </div>
+            
+            <div class="ad-modal-footer">
+                <p>Puedes cerrar este anuncio en <span class="countdown" id="countdown">5</span> segundos</p>
+                <button class="ad-close-btn" id="closeAdBtn" disabled>Omitir</button>
+            </div>
+        </div>
+    </div>
+
     <header>
         <div class="container">
             <div class="header-top">
@@ -644,6 +756,41 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Modal publicitario
+            const adModal = document.getElementById('adModal');
+            const closeAdBtn = document.getElementById('closeAdBtn');
+            const countdownElement = document.getElementById('countdown');
+            
+            let countdown = 5;
+            let countdownInterval;
+            
+            function startCountdown() {
+                countdownInterval = setInterval(() => {
+                    countdown--;
+                    countdownElement.textContent = countdown;
+                    
+                    if (countdown <= 0) {
+                        clearInterval(countdownInterval);
+                        closeAdBtn.disabled = false;
+                        closeAdBtn.textContent = "Omitir Publicidad";
+                    }
+                }, 1000);
+            }
+            
+            function closeAdModal() {
+                adModal.style.display = 'none';
+                clearInterval(countdownInterval);
+            }
+            
+            closeAdBtn.addEventListener('click', closeAdModal);
+            
+            // Mostrar el modal al cargar la página
+            window.onload = function() {
+                adModal.style.display = 'flex';
+                startCountdown();
+            };
+            
+            // Resto del código existente
             const appointmentForm = document.getElementById('appointmentForm');
             
             function handleAppointmentForm(e) {
